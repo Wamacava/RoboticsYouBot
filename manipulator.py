@@ -17,3 +17,5 @@ print "jeszcze raz"
 print "jeszcze raz"
 print "jeszcze raz"
 >>>>>>> 2b9582dd00acaf82dcc6fd21bb4f86af455b0409
+
+print"ja pierdooeleee"
