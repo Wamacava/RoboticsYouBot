@@ -1,8 +1,8 @@
-print "dziala?"
-print "nie wiem"
+print "does it work?"
+print "idk"
 
 
 
 print "KURWA"
 
-print "dziala"
+print "works"
