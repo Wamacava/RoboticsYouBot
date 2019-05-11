@@ -7,3 +7,7 @@ print "KURWA"
 
 print "works"
 print "pozdrawiam wszystkich rodakow"
+
+
+print " ja pierdole "
+print " ja pierdole "
