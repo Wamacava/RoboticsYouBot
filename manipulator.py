@@ -61,6 +61,7 @@ def CountOc():  #function to compute Oc, No idea how to do it
     zc =1
 
     return xc, yc, zc
+    print 'hello'
 
 if __name__=="__main__":
     main()
