@@ -10,16 +10,23 @@ L4 = 8.1
 L5 = 13.7
 
 def main():
-    Q = InverseKinematics(1,1,1,2,3)
+    Q = InverseKinematics(0, 0.3, -0.05, 0, -90, 0.01)
     print(Q)
 
 
  # given x, y, z, alfa, beta function will compute
  # angles of joint 1..5
-def InverseKinematics(x, y, z, alfa, beta):
-    Q = [1,1,1,1,1]  # array of joint angles
+def InverseKinematics(x, y, z, alfa, beta, gripper):
 
-    xc, yc, zc = CountOc()
+    #degrees to radians
+
+    alfa = alfa * np.pi /180
+    beta = beta * np.pi /180
+
+                        # probably we need to read Q from ros topic here
+    Q = [1, 1, 1, 1, 1, 1]  # array of joint angles and gripper possition
+
+    xc, yc, zc = CountOc(Q,x,y,z)
 
     ### Q0 ###
 
@@ -27,7 +34,7 @@ def InverseKinematics(x, y, z, alfa, beta):
 
     ### Q1 and Q2 ###
 
-    r = math.sqrt(xc^2+yc^2) - L1
+    r = math.sqrt(xc*xc+yc*xc) - L1
     s = zc - L2
 
     D = (( r*r + s*s ) - L3*L3 - L4*L4 ) / (2 * L3 * L4)   # cos(Q3)
@@ -35,6 +42,7 @@ def InverseKinematics(x, y, z, alfa, beta):
     D2 = 1 - D*D
 
     if D2 < 0 :
+        Q[0] =0
         Q[1] =0
         Q[2] =0
     else:
@@ -48,20 +56,25 @@ def InverseKinematics(x, y, z, alfa, beta):
     ### Q4 ###
     Q[4] = alfa   # i'm not sure about that
 
+    ## Q5 ###
+    Q[5] = gripper
 
     #here we need to add code to check if any joint is not out of the range
 
     return Q
 
 
-def CountOc():  #function to compute Oc, No idea how to do it
+def CountOc(Q, x, y, z):  #function to compute Oc, No idea how to do it
 
-    xc =1
-    yc =1
-    zc =1
+    r13 = math.cos(Q[0]) * math.sin(Q[1]+Q[2]+Q[3])
+    r23 = math.sin(Q[0]) * math.sin(Q[1]+Q[2]+Q[3])
+    r33 = math.cos(Q[1]+Q[2]+Q[3])
+
+    xc = x - (L5) * r13
+    yc = y - (L5) * r23
+    zc = z - (L5) * r33
 
     return xc, yc, zc
-    print 'hello'
 
 if __name__=="__main__":
     main()
