@@ -10,7 +10,7 @@ L4 = 8.1
 L5 = 13.7
 
 def main():
-    Q = InverseKinematics(0, 0.3, -0.05, 0, -90, 0.01)
+    Q = InverseKinematics(-0.1, 0.3, -0.05, 0, -80, 0.01)
     print(Q)
 
 
@@ -23,8 +23,9 @@ def InverseKinematics(x, y, z, alfa, beta, gripper):
     alfa = alfa * np.pi /180
     beta = beta * np.pi /180
 
-                        # probably we need to read Q from ros topic here
-    Q = [1, 1, 1, 1, 1, 1]  # array of joint angles and gripper possition
+    #Q = actual position                # probably we need to read Q from ros topic here
+
+    Q = [0, 0.3, -0.05, 0, -90, 1]  # array of joint angles and gripper possition
 
     xc, yc, zc = CountOc(Q,x,y,z)
 
