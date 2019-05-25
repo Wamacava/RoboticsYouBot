@@ -1,6 +1,6 @@
  # given x, y, z, alfa, beta function will compute
  # angles of joint 1..5
-def InverseKinematics(x, y, z, alfa, beta, gripper):
+def InverseKinematics(x, y, z, alfa, beta):
 
     #degrees to radians
 
@@ -9,7 +9,7 @@ def InverseKinematics(x, y, z, alfa, beta, gripper):
 
     #Q = actual position                # probably we need to read Q from ros topic here
 
-    Q = [0, 0.3, -0.05, 0, -90, 1]  # array of joint angles and gripper possition
+    Q = [0, 0.3, -0.05, 0, -90]  # array of joint angles 
 
     xc, yc, zc = CountOc(Q,x,y,z)
 
