@@ -1,0 +1,4 @@
+
+
+def drukuj():
+    print('dziala')

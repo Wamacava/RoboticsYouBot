@@ -1,5 +1,6 @@
 import numpy as np
 import math
+from myRobotClass import drukuj
 # Inverse Kinematics Code
 
 # Link Length in centimeters
@@ -10,6 +11,7 @@ L4 = 8.1
 L5 = 13.7
 
 def main():
+    drukuj()
     Q = InverseKinematics(-0.1, 0.3, -0.05, 0, -80, 0.01)
     print(Q)
 
