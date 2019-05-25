@@ -40,6 +40,7 @@ class myRobot:
         x = x +z + y + alfa + beta
 
         print(x)
+        self.pubAngles(Q)
 
     def goHome(self):
 
