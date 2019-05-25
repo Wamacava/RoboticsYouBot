@@ -34,7 +34,7 @@ def main():
             print('We should call inverseKinematics function in this place, ')
             print('In inverseKinematics function publish function')
 
-            rob.inverseKinematics(z, y, z, alfa, beta)
+            rob.inverseKinematics(x, y, z, alfa, beta)
 
             print('Done')
 
