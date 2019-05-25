@@ -1,7 +1,14 @@
+import numpy as np
+import math
  # given x, y, z, alfa, beta function will compute
  # angles of joint 1..5
-def InverseKinematics(x, y, z, alfa, beta):
 
+def inverseCount(Q, x, y, z, alfa, beta):
+    L1 = 14.7
+    L2 = 15.5
+    L3 = 13.5
+    L4 = 8.1
+    L5 = 13.7
     #degrees to radians
 
     alfa = alfa * np.pi /180
@@ -9,9 +16,9 @@ def InverseKinematics(x, y, z, alfa, beta):
 
     #Q = actual position                # probably we need to read Q from ros topic here
 
-    Q = [0, 0.3, -0.05, 0, -90]  # array of joint angles 
+    #Q = [0, 0.3, -0.05, 0, -90]  # array of joint angles
 
-    xc, yc, zc = CountOc(Q,x,y,z)
+    xc, yc, zc = countOc(Q,x,y,z)
 
     ### Q0 ###
 
@@ -41,15 +48,18 @@ def InverseKinematics(x, y, z, alfa, beta):
     ### Q4 ###
     Q[4] = alfa   # i'm not sure about that
 
-    ## Q5 ###
-    Q[5] = gripper
 
     #here we need to add code to check if any joint is not out of the range
 
     return Q
 
 
-def CountOc(Q, x, y, z):  #function to compute Oc, No idea how to do it
+def countOc(Q, x, y, z):  #function to compute Oc, No idea how to do it
+    L1 = 14.7
+    L2 = 15.5
+    L3 = 13.5
+    L4 = 8.1
+    L5 = 13.7
 
     r13 = math.cos(Q[0]) * math.sin(Q[1]+Q[2]+Q[3])
     r23 = math.sin(Q[0]) * math.sin(Q[1]+Q[2]+Q[3])

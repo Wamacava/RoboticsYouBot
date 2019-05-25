@@ -1,9 +1,11 @@
 #myRobot class contains methods necessary to perform pick and place operation
-
+from inverse import inverseCount
+import numpy as np
+import math
 
 
 class myRobot:
-    Q = [0, 0, 0, 0, 0]  # init values ???
+    Q = [0, 0.3, -0.05, 0, -90]  # init values ???
     G= [0, 0] # gripper Left, Right
 
     # Link Length in centimeters:
@@ -37,10 +39,10 @@ class myRobot:
 
     def inverseKinematics(self, x, y, z, alfa, beta):
 
-        x = x +z + y + alfa + beta
+        self.Q = inverseCount(self.Q, x, y, z, alfa, beta)
 
-        print(x)
-        self.pubAngles(Q)
+        print(self.Q)
+        self.pubAngles(self.Q)
 
     def goHome(self):
 
