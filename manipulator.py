@@ -1,6 +1,6 @@
 import numpy as np
 import math
-from myRobotClass import drukuj
+from myRobotClass import myRobot
 # Inverse Kinematics Code
 
 # Link Length in centimeters
@@ -11,9 +11,47 @@ L4 = 8.1
 L5 = 13.7
 
 def main():
-    drukuj()
-    Q = InverseKinematics(-0.1, 0.3, -0.05, 0, -80, 0.01)
-    print(Q)
+    rob = myRobot()
+
+    rob.info()
+
+    while True:
+        inp = input('>>>')
+
+        if inp == 'goTo':
+            entered = input('Enter x y z alfa beta position separated by space: ')
+            entered.split()
+            try:
+                x = int(entered[0])
+                y =int(entered[1])
+                z = int(entered[2])
+                alfa =int(entered[3])
+                beta = int(entered[4])
+            except:
+                print('Something went wrong, values incorect')
+
+
+            print('We should call inverseKinematics function in this place, ')
+            print('In inverseKinematics function publish function')
+
+            rob.InverseKinematics(z, y, z, alfa, beta)
+
+            print('Done')
+
+        elif inp == 'home':
+            rob.goHome()
+
+        elif inp == 'candle':
+            rob.goToCandles()
+
+        elif inp == 'Quit':
+            print("See you!")
+            quit()
+
+
+        rob.info()
+#    Q = InverseKinematics(-0.1, 0.3, -0.05, 0, -80, 0.01)
+#    print(Q)
 
 
  # given x, y, z, alfa, beta function will compute
