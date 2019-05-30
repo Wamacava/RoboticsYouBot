@@ -1,9 +1,11 @@
 import numpy as np
 import math
-###import rospy
-###from brics_actuator.msg import JointPositions, JointValue, Poison
+import rospy
+from brics_actuator.msg import JointPositions, JointValue, Poison
 from myRobotClass import myRobot
-###from talker import talker
+from talker import talker
+import string
+
 
 
 
@@ -13,12 +15,16 @@ def main():
 
     rob.info()
 
-    while True:
-        inp = input('>>>')
+    #rob.goToCandle()
 
-        if inp == 'goTo':
-            entered = input('Enter >x y z alfa beta< position separated by space: ')
-            splited = entered.split(' ')
+
+    while True:
+        inp = raw_input('>>>')
+	inp = inp.lower()
+
+        if inp == 'goto':
+            entered = raw_input('Enter >x y z alfa beta< position separated by space: ')
+            splited = entered.split()
 
             try:
                 x = float(splited[0])
@@ -26,6 +32,7 @@ def main():
                 z = float(splited[2])
                 alfa =float(splited[3])
                 beta = float(splited[4])
+
             except:
                 print('Something went wrong, values incorect')
                 rob.info()
@@ -35,6 +42,7 @@ def main():
             print('We should call inverseKinematics function in this place, ')
             print('In inverseKinematics function publish function')
 
+	    print(x, y, z, alfa, beta)
             rob.inverseKinematics(x, y, z, alfa, beta)
 
             print('Done')
@@ -48,10 +56,10 @@ def main():
         elif inp == 'pick':
             print('ok')
 
-        elif inp == 'candle':
-            print('ok')
+	elif inp == 'direct':
+	    rob.directKinematics()
 
-        elif inp == 'Quit':
+        elif inp == 'quit':
             print("See you!")
             quit()
 
@@ -59,8 +67,7 @@ def main():
             print('Command incorrect')
 
         rob.info()
-#    Q = InverseKinematics(-0.1, 0.3, -0.05, 0, -80, 0.01)
-#    print(Q)
+
 
 
 

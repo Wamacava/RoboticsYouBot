@@ -2,7 +2,9 @@
 from inverse import inverseCount
 import numpy as np
 import math
-
+import rospy
+from talker import talker
+from direct import directCount
 
 class myRobot:
     Q = [0, 0.3, -0.05, 0, -90]  # init values ???
@@ -22,11 +24,12 @@ class myRobot:
 
     def pubAngles(self, Q):
 
-        #try:
-            #talker()
-    	    #print("done")
-        #except rospy.ROSInterruptException:
-            #pass
+        try:
+            talker(self.Q)
+    	    print("done")
+        except rospy.ROSInterruptException:
+	    print("error during publishing")
+            pass
         print('')
 
     def pubGripper(self, G):
@@ -35,6 +38,12 @@ class myRobot:
 
     def closeGripper(self):
         print('')
+
+    def directKinematics(self):
+	
+	x, y, z = directCount(self.Q)
+
+	print('x, y, z: ', x, y, z)
 
 
     def inverseKinematics(self, x, y, z, alfa, beta):
@@ -45,11 +54,15 @@ class myRobot:
         self.pubAngles(self.Q)
 
     def goHome(self):
-
-        print('goint to home pos')
+	self.Q = [0.11, 0.11, -0.11, 0.11, 0.11]
+	print('going home')	
+	self.pubAngles(self.Q)
 
     def goToCandle(self):
-        print('goint to candle pos')
+	self.Q = [2.95, 1.05, -2.44, 1.73, 2.95]
+	print('going to candle pos')	
+	self.pubAngles(self.Q)
+        
 
     def info(self):
         print('')
@@ -60,6 +73,7 @@ class myRobot:
         print('     >>>place<<< to place object on the robot')
         print('     >>>home<<< to go to home position')
         print('     >>>candle<<< to go to candle position')
+	print('     >>>direct<<< to calculate direct kinematics')
         print('     >>>Quit<<< to exit')
         print('')
 

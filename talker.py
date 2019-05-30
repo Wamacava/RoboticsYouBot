@@ -1,5 +1,8 @@
+import rospy
+from brics_actuator.msg import JointPositions, JointValue, Poison
+import string
 
-def talker():
+def talker(Q):
     pub = rospy.Publisher('/arm_1/arm_controller/position_command', JointPositions, queue_size=10)
     rospy.init_node('talker', anonymous=True)
     rate = rospy.Rate(5) # 10hz
@@ -38,27 +41,27 @@ def talker():
         joint_val_1 = JointValue()
         joint_val_1.joint_uri = "arm_joint_1"
         joint_val_1.unit = "rad"
-        joint_val_1.value = 2.95
+        joint_val_1.value = Q[0]
 
         joint_val_2 = JointValue()
         joint_val_2.joint_uri = "arm_joint_2"
         joint_val_2.unit = "rad"
-        joint_val_2.value = 1.05
+        joint_val_2.value = Q[1]
 
         joint_val_3 = JointValue()
         joint_val_3.joint_uri = "arm_joint_3"
         joint_val_3.unit = "rad"
-        joint_val_3.value = -2.44
+        joint_val_3.value = Q[2]
 
         joint_val_4 = JointValue()
         joint_val_4.joint_uri = "arm_joint_4"
         joint_val_4.unit = "rad"
-        joint_val_4.value = 1.73
+        joint_val_4.value = Q[3]
 
         joint_val_5 = JointValue()
         joint_val_5.joint_uri = "arm_joint_5"
         joint_val_5.unit = "rad"
-        joint_val_5.value = 2.95
+        joint_val_5.value = Q[4]
 
 
 

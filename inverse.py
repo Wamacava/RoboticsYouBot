@@ -22,7 +22,7 @@ def inverseCount(Q, x, y, z, alfa, beta):
 
     ### Q0 ###
 
-    Q[0] = np.arctan(yc/xc)
+    Q[0] = math.atan2(yc,xc)
 
     ### Q1 and Q2 ###
 
@@ -38,8 +38,8 @@ def inverseCount(Q, x, y, z, alfa, beta):
         Q[1] =0
         Q[2] =0
     else:
-        Q[2] = np.arctan(math.sqrt(1 - D*D) / D)
-        Q[1] = np.arctan(r / (zc - L2)) - np.arctan( (L4 *np.sin(Q[3]) ) / (L3 + L4*np.cos(Q[3])) )
+        Q[2] = math.atan2(math.sqrt(1 - D*D) , D)
+        Q[1] = math.atan2(r , (zc - L2)) - math.atan2( (L4 *np.sin(Q[3]) ) , (L3 + L4*np.cos(Q[3])) )
 
     ### Q3 ###
 
@@ -47,10 +47,39 @@ def inverseCount(Q, x, y, z, alfa, beta):
 
     ### Q4 ###
     Q[4] = alfa   # i'm not sure about that
-
+	
 
     #here we need to add code to check if any joint is not out of the range
 
+    if(Q[0] == 0 and  Q[1] == 0 and Q[2] == 0 and Q[3] == 0 and Q[4] == 0):
+	Q= [0.11, 0.11, -0.11, 0.11, 0.11062]
+	print('all zeros')
+	return Q
+
+
+    print('-----------------------')
+    print('Calculated values')
+    print(Q)
+    print('-----------------------')
+    Q[0] += 2.9150354
+    Q[1] += 1.0958636
+    Q[2] -= 2.5481815 
+    Q[3] += 1.7247770
+    Q[4] += 2.8761045
+
+
+
+    if(  Q[0] > 5.84014 or Q[0] < 0.0100692 or Q[1] < 0.0100692 or Q[1] > 2.61799 or Q[2] < -5.02655 or Q[2]>         -0.015708 or Q[3] > 3.4292 or Q[3] < 0.0221239 or Q[4] < 0.110619 or Q[4] > 5.64159):
+
+	Q= [0.11, 0.11, -0.11, 0.11, 0.11062]
+	print('Out of range, I go home')
+ 
+    	
+
+#    if(  Q[0] > 5.84014 or Q[0] < 0.0100692 or Q[1] < 0.0100692 or Q[1] > 2.61799 or Q[2] < -5.02655 or Q[2]> -0.015708 or Q[3] > 3.4292 or Q[3] < 0.0221239 or Q[4] < 0.110619  or Q[4] > 5.64159):
+#	Q= [0.11, 0.11, -0.11, 0.11, 0.11]
+#	print('Out of range, I go home')
+	
     return Q
 
 
