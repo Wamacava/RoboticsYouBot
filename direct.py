@@ -27,7 +27,7 @@ def directCount(Q):
 
     Q[0] -= 2.9150354
     Q[1] -= 1.0958636
-    Q[2] += 2.5481815 
+    Q[2] += 2.5481815
     Q[3] -= 1.7247770
     Q[4] -= 2.8761045
     Q = [0,0,0,0,0]
@@ -43,18 +43,18 @@ def directCount(Q):
     [0,0,1, 0],
     [0,0,0, 1], ])
     #Finding the homogeneous transformation of the system
-    
+
     #T01 = np.dot(T00,np.dot(ScrewZ(Q[0],L2),ScrewX(-pm,L1)))
     T01 = np.matmul(np.matmul(T00,ScrewZ(Q[0],L2)),ScrewX(-pm,L1))
     T02 = np.dot(T01,np.dot(ScrewZ(Q[1],0),ScrewX(0,L3)))
     T03 = np.dot(T02,np.dot(ScrewZ(Q[2],0),ScrewX(0,L4)))
     T04 = np.dot(T03,np.dot(ScrewZ(Q[3],0),ScrewX(pm,0)))
     T05 = np.dot(T04,np.dot(ScrewZ(Q[4],L5),ScrewX(0,0)))
-    
-    
-    
 
-   
+
+
+
+
     #T02 = np.matmul(np.matmul(T01,ScrewZ(Q[1],0)),ScrewX(0,L3))
     #T03 = np.matmul(np.matmul(T02,ScrewZ(Q[2],0)),ScrewX(0,L4))
     #T04 = np.matmul(np.matmul(T03,ScrewZ(Q[3],0)),ScrewX(pm,0))
@@ -65,7 +65,7 @@ def directCount(Q):
     y = T05[1,3]
     z = T05[2,3]
 
- 
+
+    print(T05)
     print(T05)
     return x, y, z
-
