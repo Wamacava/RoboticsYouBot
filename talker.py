@@ -3,6 +3,9 @@ from brics_actuator.msg import JointPositions, JointValue, Poison
 import string
 import math
 
+
+
+
 def talker(Q):
     pub = rospy.Publisher('/arm_1/arm_controller/position_command', JointPositions, queue_size=10)
     rospy.init_node('talker', anonymous=True)
@@ -13,7 +16,7 @@ def talker(Q):
     while not rospy.is_shutdown():
 
 
-	joint_pos = JointPositions()
+        joint_pos = JointPositions()
         joint_number = 1
 
 
@@ -62,7 +65,7 @@ def talker(Q):
         joint_val_5.unit = "rad"
         joint_val_5.value = Q[4] + 2.95
 
-
+    
 
 	poison = Poison()
 
@@ -71,18 +74,14 @@ def talker(Q):
         joint_pos.positions = [joint_val_1, joint_val_2, joint_val_3, joint_val_4, joint_val_5]
 
         #pub_youbotleaparm.publish(joint_pos)
-
-
-        rospy.loginfo(joint_pos)
-
+       
+         # rospy.loginfo(joint_pos)
         pub.publish(joint_pos)
 
         count+=1
 	rate.sleep()
 
-	print("------------------")
-	print(count)
-	print("------------------")
+	
 
 	if count == 2:
                 print("Published: ", Q[0]*180 / math.pi, Q[1]*180 / math.pi, Q[2]*180 / math.pi, Q[3]*180 / math.pi, Q[4]*180 / math.pi)

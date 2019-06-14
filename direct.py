@@ -16,9 +16,13 @@ def T(alfa,a,d,q):
     return T
 
 def directCount(Q):
-    print("Q in direct function: ", Q)
+    
+    print("")
+
+    print("Q in direct function: ", Q[0]*180 / math.pi, Q[1]*180 / math.pi, Q[2]*180 / math.pi, Q[3]*180 / math.pi, Q[4]*180 / math.pi)
+
+
     offset = (math.pi)/2
-    print(Q)
     L1 = 33
     L2 = 147
     L3 = 155
@@ -41,7 +45,10 @@ def directCount(Q):
     y = T4[1,3]
     z = T4[2,3]
 
-    print("Actual possition of the end effector (x, y, z): ",x,y,z)
+    print("")
+    print("Actual possition of the end effector (x, y, z): ")
+    print(x, y ,z)
+    print("")
     return x, y, z
 
 
