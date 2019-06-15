@@ -8,9 +8,10 @@ from talkerGripper import talkerGripper
 from direct import directCount
 import time
 
+
 class myRobot:
     Q =  [-2.84, -0.94, 2.33, -1.62, -2.84]  # home pos
-    lastQ =  [-2.84, -0.94, 2.33, -1.62, -2.84] 
+    lastQ =  [-2.84, -0.94, 2.33, -1.62, -2.84]
     #Q = [0, 0, 0, 0, 0] #candle pos
     G= [0, 0] # gripper Left, Right
 
@@ -31,26 +32,26 @@ class myRobot:
 	self.info()
 
     def directKinematics(self):
-	
+
 	x, y, z = directCount(self.Q)
 
     def goHome(self):
 	self.Q = [-2.84, -0.94, 2.33, -1.62, -2.84]
-	print('going home')	
+	print('going home')
 	self.pubAngles()
 
 
     def goToCandle(self):
 	self.Q = [0, 0, 0, 0, 0]
-	print('going to candle pos')	
+	print('going to candle pos')
 	self.pubAngles()
-  
+
 
     def pubAngles(self):
 
         try:
             talker([self.lastQ[0], 0, 0, 0, 0])  #going to candle position before every move
-    	                                           
+
         except rospy.ROSInterruptException:
 	    print("error during publishing")
             pass
@@ -81,7 +82,7 @@ class myRobot:
         time.sleep(1)
 
     def pubGripper(self):
-        
+
         try:
             talkerGripper(self.G)
         except rospy.ROSInterruptException:
@@ -91,12 +92,12 @@ class myRobot:
 
     def closeGripper(self):
         print('')
-    
-    
+
+
 
     def inverseKinematics(self, x, y, z, where,phi):
 
-        self.Q = inverseCount(x, y, z, where,phi) 
+        self.Q = inverseCount(x, y, z, where,phi)
         self.pubAngles()
 
 
@@ -109,9 +110,9 @@ class myRobot:
         time.sleep(4)
         self.G=[0.0, 0.0]  ###close gripper
         talkerGripper(self.G)
-        time.sleep(2)    
-        self.goToCandle() 
-        
+        time.sleep(2)
+        self.goToCandle()
+
 
     def place(self):
         dir = self.getdir()
@@ -120,7 +121,7 @@ class myRobot:
         time.sleep(4)
         self.G=[0.011, 0.011] ###open gripper
         self.pubGripper()
-        time.sleep(2)    
+        time.sleep(2)
         self.goToCandle()
 
     def pickplace(self):
@@ -136,7 +137,7 @@ class myRobot:
         time.sleep(4)
         self.G=[0.011, 0.011] ###open gripper
         self.pubGripper()
-        time.sleep(2)    
+        time.sleep(2)
         self.goToCandle()
 
     def demo(self):
@@ -153,8 +154,8 @@ class myRobot:
         time.sleep(2)
         self.G=[0.011, 0.011] ###open gripper
         self.pubGripper()
-        time.sleep(2)    
-        self.goToCandle() 
+        time.sleep(2)
+        self.goToCandle()
 
 
         x, y, z, where, phi = self.getPoint('front')
@@ -169,10 +170,10 @@ class myRobot:
         time.sleep(2)
         self.G=[0.011, 0.011] ###open gripper
         self.pubGripper()
-        time.sleep(2)    
+        time.sleep(2)
         self.goToCandle()
 
-        
+
 
         x, y, z, where, phi = self.getPoint('backR')
         self.inverseKinematics(x, y, z, where,phi)
@@ -180,7 +181,7 @@ class myRobot:
         self.G=[0.0, 0.0]  ###close gripper
         self.pubGripper()
         time.sleep(2)
-        
+
         x, y, z, where, phi = self.getPoint('left')
         self.inverseKinematics(x, y, z, where,phi)
         time.sleep(2)
@@ -188,40 +189,40 @@ class myRobot:
         self.pubGripper()
         time.sleep(2)
 
-        self.goToCandle() 
+        self.goToCandle()
 
     def getPoint(self, dir):
 
 
 
 
-        if dir == 'front':	  #####---FRONT---######      
+        if dir == 'front':	  #####---FRONT---######
 
             x = -274
-            y = 0 
+            y = 0
             z= -113
             where = dir
             phi = -math.pi/2
-        elif dir == 'right':	  #####---RIGHT---###### 
+        elif dir == 'right':	  #####---RIGHT---######
             x = 0
             y = -274
             z=  -113
             where = dir
             phi = -math.pi/2
-        elif dir == 'left':	  #####---left---###### 
+        elif dir == 'left':	  #####---left---######
             x = 0
-            y =274 
+            y =274
             z= -113
             where = dir
             phi = -math.pi/2
-        elif dir == 'backR':	  #####---backR---###### 
+        elif dir == 'backR':	  #####---backR---######
             x = 280
             y = 0
             z= 50
             where = dir
             phi =  -math.pi/2
 
-        elif dir == 'backL':	  #####---backL---###### 
+        elif dir == 'backL':	  #####---backL---######
             x = 280
             y = 0
             z= 50
@@ -265,7 +266,7 @@ class myRobot:
             inp = raw_input('>>>')
 	    inp = inp.lower()
 
-        
+
             if inp == 'setangles':	  #####---SET ANGLES---######
                 entered = raw_input('Enter >Q1 Q2 Q3 Q4 Q5 < position in degrees separated by space:      ')
                 splited = entered.split()
@@ -279,7 +280,7 @@ class myRobot:
                     self.Q[4] = (float(splited[4]) *math.pi) /180
 
                     print("changed Q: ", self.Q)
-            
+
                 except:
                    print('Something went wrong, values incorect')
                    self.info()
@@ -304,17 +305,17 @@ class myRobot:
                splited = entered.split()
 	       print(splited)
 
-            
+
                try:
-                   x = float(splited[0]) 
-                   y = float(splited[1]) 
-                   z = float(splited[2]) 
-                   where = splited[3] 
+                   x = float(splited[0])
+                   y = float(splited[1])
+                   z = float(splited[2])
+                   where = splited[3]
                    phi = (float(splited[4]) *math.pi) /180
 
                    print(x, y, z, where, phi)
-             
-            
+
+
                except:
                    print('Something went wrong, values incorect')
                    self.info()
@@ -334,7 +335,7 @@ class myRobot:
 
             elif inp == 'candle':	    #####---CANDLE---######
                 self.goToCandle()
-   
+
             elif inp == 'pick':	   #####---PICK---######
                 self.pick()
 
@@ -353,7 +354,7 @@ class myRobot:
 
             else:
                 print('Command incorrect')
- 
+
             self.info()
 
 

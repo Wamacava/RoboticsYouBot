@@ -3,8 +3,8 @@ from brics_actuator.msg import JointPositions
 
 def callback(data):
     #rospy.loginfo(rospy.get_caller_id() + 'I heard %s', data.positions)
-    
-    
+
+
     print("Joint 1: %s" % (data.positions[0].value))
     print("Joint 2: %s" % (data.positions[1].value))
     print("Joint 3: %s" % (data.positions[2].value))
@@ -12,11 +12,10 @@ def callback(data):
     print("Joint 5: %s" % (data.positions[4].value))
     print("------------------------------------" )
 
-    
-    
-    
-    
-    
+
+
+
+
 
 
 def listener():

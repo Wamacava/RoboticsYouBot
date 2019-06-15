@@ -14,7 +14,7 @@ import string
 def main():
     rob = myRobot()
     rob.run()
- 
+
 
 if __name__=="__main__":
     main()

@@ -33,7 +33,7 @@
 #
 # Revision $Id$
 
-## Simple talker demo that listens to std_msgs/Strings published 
+## Simple talker demo that listens to std_msgs/Strings published
 ## to the 'chatter' topic
 
 import rospy
@@ -41,13 +41,13 @@ from brics_actuator.msg import JointPositions
 
 def callback(data):
     #rospy.loginfo(rospy.get_caller_id() + 'I heard %s', data.positions)
-    
-    
+
+
     print("message:")
     print("origi: %s" % (data.poisonStamp.originator))
     print("descr: %s" % (data.poisonStamp.description))
     print("qos: %s" % (data.poisonStamp.qos))
-    
+
     print("timeStamp1: %s" % (data.positions[0].timeStamp))
     print("uri: %s" % (data.positions[0].joint_uri))
     print("unit: %s" % (data.positions[0].unit))
@@ -58,14 +58,9 @@ def callback(data):
     print("unit: %s" % (data.positions[1].unit))
     print("Joint 2: %s" % (data.positions[1].value))
 
-    
-    
 
-    
-    
-    
-    
-    
+
+
 
 
 def listener():

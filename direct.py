@@ -16,7 +16,7 @@ def T(alfa,a,d,q):
     return T
 
 def directCount(Q):
-    
+
     print("")
 
     print("Q in direct function: ", Q[0]*180 / math.pi, Q[1]*180 / math.pi, Q[2]*180 / math.pi, Q[3]*180 / math.pi, Q[4]*180 / math.pi)
@@ -50,5 +50,3 @@ def directCount(Q):
     print(x, y ,z)
     print("")
     return x, y, z
-
-
