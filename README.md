@@ -25,15 +25,25 @@ $ python main.py
  Function run() starts demonstative program in witch user have several options to choose. (Instructions appear on the screen)
 
  Write:
+ 
      >>>direct<<< to calculate direct kinematics
+     
      >>>inverse<<< to calculate inverse kinematics
+     
      >>>setangles<<< to enter desired joint values
+     
      >>>home<<< to go to the home position
+     
      >>>candle<<< to go to the candle position
+     
      >>>pick<<< to pick object in front of robot
+     
      >>>place<<< to place object on the robot
+     
      >>>pick&place<<< to pick object and place it on the robot
+     
      >>>demo<<< to see the demonstration of all pick and place possibilities
+     
      >>exit<<< to exit
 
 
