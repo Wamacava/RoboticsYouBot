@@ -45,7 +45,7 @@ def talkerGripper(G):
 
 
 
-	poison = Poison()
+	    poison = Poison()
 
         joint_pos.poisonStamp = poison
 
@@ -57,7 +57,7 @@ def talkerGripper(G):
         pub.publish(joint_pos)
 
         count+=1
-	rate.sleep()
+	    rate.sleep()
 
         if count == 2:
             print("Published: ", G[0], "m", G[1], "m")

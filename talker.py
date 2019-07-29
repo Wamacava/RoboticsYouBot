@@ -65,7 +65,7 @@ def talker(Q):
 
 
 
-	poison = Poison()
+	    poison = Poison()
 
         joint_pos.poisonStamp = poison
 
@@ -77,10 +77,9 @@ def talker(Q):
         pub.publish(joint_pos)
 
         count+=1
-	rate.sleep()
+	    rate.sleep()
 
 
-
-	if count == 2:
-                print("Published: ", Q[0]*180 / math.pi, Q[1]*180 / math.pi, Q[2]*180 / math.pi, Q[3]*180 / math.pi, Q[4]*180 / math.pi)
-		return
+    	if count == 2:
+            print("Published: ", Q[0]*180 / math.pi, Q[1]*180 / math.pi, Q[2]*180 / math.pi, Q[3]*180 / math.pi, Q[4]*180 / math.pi)
+		    return

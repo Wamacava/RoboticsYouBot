@@ -8,8 +8,8 @@ def talker():
     rate = rospy.Rate(5) # 10hz
     count = 0
     while not rospy.is_shutdown():
-	
-	joint_pos = JointPositions()
+
+	    joint_pos = JointPositions()
         joint_number = 1
 
 
@@ -64,7 +64,7 @@ def talker():
 
 
 
-	poison = Poison()
+	    poison = Poison()
 
         joint_pos.poisonStamp = poison
 
@@ -78,14 +78,14 @@ def talker():
         pub.publish(joint_pos)
 
         count+=1
-	rate.sleep()
+	    rate.sleep()
 
-	print("------------------")
-	print(count)
-	print("------------------")
+	    print("------------------")
+	    print(count)
+	    print("------------------")
 
-	if count == 2:
-		return
+	    if count == 2:
+		    return
 
 
 

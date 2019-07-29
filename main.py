@@ -9,8 +9,6 @@ import string
 
 
 
-
-
 def main():
     rob = myRobot()
     rob.run()
