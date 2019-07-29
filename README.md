@@ -1,5 +1,5 @@
-# RoboticsYouBot
-Kuka YouBot
+# Kuka YouBot
+
 
 This project solves inverse and direct kinematics in Kuka YouBot Manipulator
 
@@ -44,7 +44,7 @@ Direct kinematics is solved by Denavit-Hartenberg parameters
 Inverse kinematics is the reverse proces to direct kinematics. Through it we compute the joint parameters that achieve a specified position of the end-effector.
 
 We assume that:
- - first join is moving only into 5 positions (it could be also computed as arctan2(x,y) but it require some assumptions). In our project:
+ The first join is moving only into 5 positions (it could be also computed as arctan2(x,y) but it require some assumptions). In our project:
 - right – to pick/place something on the right
 - left
 - front
